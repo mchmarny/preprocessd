@@ -17,7 +17,7 @@ func requestHandler(w http.ResponseWriter, r *http.Request) {
 		writeResp(w, http.StatusBadRequest, "Invalid Content")
 		return
 	}
-	//logger.Printf("Raw pubsub pushed content: %v", c)
+	logger.Printf("Content from PubSub subscription: %v", c.Subscription)
 
 	var m mockedEvent
 	if err := json.Unmarshal(c.Message.Data, &m); err != nil {
