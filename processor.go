@@ -28,8 +28,6 @@ type processedEvent struct {
 
 func process(m *mockedEvent) (p *processedEvent, err error) {
 
-	logger.Print("Init Processor...")
-
 	// first reload process event from mocked
 	d := &processedEvent{
 		SourceID:     m.SourceID,

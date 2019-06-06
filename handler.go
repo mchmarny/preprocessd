@@ -13,7 +13,7 @@ func requestHandler(w http.ResponseWriter, r *http.Request) {
 
 	var c pushedContent
 	if err := json.NewDecoder(r.Body).Decode(&c); err != nil {
-		logger.Printf("Error decoding message: " + err.Error())
+		logger.Printf("Error decoding message: %v", err)
 		writeResp(w, http.StatusBadRequest, "Invalid Content")
 		return
 	}
@@ -21,7 +21,7 @@ func requestHandler(w http.ResponseWriter, r *http.Request) {
 
 	var m mockedEvent
 	if err := json.Unmarshal(c.Message.Data, &m); err != nil {
-		logger.Printf("Error decoding message data: " + err.Error())
+		logger.Printf("Error decoding message data: %v", err)
 		writeResp(w, http.StatusBadRequest, "Invalid Content")
 		return
 	}
@@ -29,18 +29,19 @@ func requestHandler(w http.ResponseWriter, r *http.Request) {
 
 	d, err := process(&m)
 	if err != nil {
-		logger.Printf("Error processing data: " + err.Error())
+		logger.Printf("Error processing data: %v", err)
 		writeResp(w, http.StatusInternalServerError, "Internal Server Error")
 		return
 	}
-	logger.Printf("Processed data: %v", d)
+	logger.Printf("Processed data: %+v", d)
 
-	// err = que.push(r.Context(), data)
-	// if err != nil {
-	// 	logger.Printf("Error storing data: " + err.Error())
-	// 	writeResp(w, http.StatusBadRequest, "Internal Error")
-	// 	return
-	// }
+	data, _ := json.Marshal(d)
+	err = que.push(r.Context(), data)
+	if err != nil {
+		logger.Printf("Error posting data: %v", err)
+		writeResp(w, http.StatusBadRequest, "Internal Error")
+		return
+	}
 
 	writeResp(w, http.StatusOK, "OK")
 	return

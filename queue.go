@@ -16,7 +16,6 @@ type queue struct {
 
 // newQueue is invoked once per Storable life cycle to configure the store
 func newQueue(ctx context.Context, projectID, topicName string) (q *queue, err error) {
-	logger.Print("Init Queue...")
 
 	if projectID == "" {
 		return nil, errors.New("projectID not set")
