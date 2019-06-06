@@ -1,6 +1,12 @@
 # preprocessd
 
-Simple example showing how to use Cloud Run to pre-process raw evens from sent from PubSub subscription and push the processed events into PubSub topic.
+Simple example showing how to use Cloud Run to pre-process raw evens from PubSub and publish them to new topic. This is potentially powerful because:
+
+* Write each one of the pre-processing steps in the most appropriate (or favorite) development language
+* Bring your own runtime (or even specific version of that runtime) or custom libraries
+* Dynamically scale up and down with your event load
+* Scale to 0, and don't pay anything, when there is nothing to process
+* Use granular access control using service account and policy bindings
 
 ## Event Source
 
@@ -109,4 +115,16 @@ gcloud beta pubsub subscriptions create preprocessdsub \
 	--push-endpoint="${SURL}/" \
 	--push-auth-service-account="preprocessdinvoker@${PRJ}.iam.gserviceaccount.com"
 ```
+
+## Log
+
+When running the `` service you can see in the Cloud Run service log tab the raw data that was pushed by PubSub subscription to the service and the processed data that was pushed onto the target topic
+
+<img src="images/log.png" alt="Cloud Run Log">
+
+## Disclaimer
+
+This is my personal project and it does not represent my employer. I take no responsibility for issues caused by this code. I do my best to ensure that everything works, but if something goes wrong, my apologies is all you will get.
+
+
 
