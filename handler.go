@@ -17,7 +17,7 @@ func requestHandler(w http.ResponseWriter, r *http.Request) {
 		writeResp(w, http.StatusBadRequest, "Invalid Content")
 		return
 	}
-	logger.Printf("Raw pubsub pushed content: %v", c)
+	//logger.Printf("Raw pubsub pushed content: %v", c)
 
 	var m mockedEvent
 	if err := json.Unmarshal(c.Message.Data, &m); err != nil {
@@ -26,6 +26,14 @@ func requestHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	logger.Printf("Message content: %v", m)
+
+	d, err := process(&m)
+	if err != nil {
+		logger.Printf("Error processing data: " + err.Error())
+		writeResp(w, http.StatusInternalServerError, "Internal Server Error")
+		return
+	}
+	logger.Printf("Processed data: %v", d)
 
 	// err = que.push(r.Context(), data)
 	// if err != nil {
