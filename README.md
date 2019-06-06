@@ -1,12 +1,12 @@
 # preprocessd
 
-Simple example showing how to use Cloud Run to pre-process raw evens from PubSub and publish them to new topic. This is potentially powerful because:
+Simple example showing how to use Cloud Run to pre-process raw evens from PubSub and publish them to new topic. Why pre-process your events in Cloud Run:
 
 * Write each one of the pre-processing steps in the most appropriate (or favorite) development language
-* Bring your own runtime (or even specific version of that runtime) or custom libraries
-* Dynamically scale up and down with your event load
+* Bring your own runtime (or even specific version of that runtime) along with custom libraries
+* Dynamically scale up and down with your PubSub event load
 * Scale to 0, and don't pay anything, when there is nothing to process
-* Use granular access control using service account and policy bindings
+* Use granular access control with service account and policy bindings
 
 ## Event Source
 
