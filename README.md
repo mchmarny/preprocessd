@@ -1,6 +1,8 @@
 # preprocessd
 
-Simple example showing how to use Cloud Run to pre-process raw evens from PubSub and publish them to new topic. Why pre-process your events in Cloud Run:
+Simple example showing how to use Cloud Run to pre-process raw events from PubSub and publish them to new topic.
+
+In many cases the raw data from the ingestion point (e.g. IoT event stream) needs to be pre-procesed before it can be used (e.g. to build ML model for prediction service). Cloud Run is a great platform to build these pre-processing services:
 
 * Write each one of the pre-processing steps in the most appropriate (or favorite) development language
 * Bring your own runtime (or even specific version of that runtime) along with custom libraries
