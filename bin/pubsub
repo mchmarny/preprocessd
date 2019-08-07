@@ -1,0 +1,18 @@
+#!/bin/bash
+
+DIR="$(dirname "$0")"
+. "${DIR}/config"
+
+
+SERVICE_URL=$(gcloud beta run services describe $SERVICE_NAME \
+    --platform managed \
+	--region $SERVICE_REGION \
+    --format "value(status.domain)")
+
+gcloud beta pubsub subscriptions create "${SERVICE_NAME}-sub" \
+    --topic eventmaker \
+    --push-endpoint "${SERVICE_URL}/" \
+    --push-auth-service-account "${SERVICE_NAME}-sa@${PROJECT}.iam.gserviceaccount.com"
+
+
+

@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# Global config
+SERVICE_NAME="preprocessd"
+SERVICE_REGION="us-central1"
+IMAGE_VERSION="0.2.1"
+
+
+# GCP metadata
+PROJECT=$(gcloud config get-value project)
+PROJECT_NUM=$(gcloud projects describe ${PROJECT} \
+    --format="value(projectNumber)")
+
