@@ -1,0 +1,12 @@
+{
+    "source_id": "device-1",
+    "event_id": "eid-b6569857-232c-4e6f-bd51-cda4e81f3e1f",
+    "event_ts": "2019-06-05T11:39:50.403778Z",
+    "label": "utilization",
+    "mem_used": 34.47265625,
+    "cpu_used": 6.5,
+    "load_1": 1.55,
+    "load_5": 2.25,
+    "load_15": 2.49,
+    "random_metric": 94.05090880450125
+}

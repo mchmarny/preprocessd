@@ -1,13 +1,18 @@
 package main
 
 import (
-	"encoding/json"
 	"net/http"
 	"strings"
+
+	oa "google.golang.org/api/oauth2/v2"
 )
 
 const (
 	oauthURL = "https://oauth2.googleapis.com/tokeninfo?id_token="
+)
+
+var (
+	httpClient = &http.Client{}
 )
 
 func auth(r *http.Request) bool {
@@ -23,30 +28,30 @@ func auth(r *http.Request) bool {
 		return false
 	}
 
-	req, err := http.NewRequest("GET", oauthURL+token, nil)
-	req.Header.Set("Content-Type", "application/json")
-
-	client := &http.Client{}
-	resp, err := client.Do(req)
+	oaSrv, err := oa.New(httpClient)
 	if err != nil {
-		logger.Printf("Error calling backend: %v", err)
-		return false
-	}
-	defer resp.Body.Close()
-
-	logger.Printf("Response status: %s", resp.Status)
-	if resp.StatusCode != http.StatusOK {
-		logger.Printf("Invalid response code: %v", resp.StatusCode)
+		logger.Printf("Error creating OAuth client: %v", err)
 		return false
 	}
 
-	dataMap := make(map[string]interface{})
-	err = json.NewDecoder(resp.Body).Decode(&dataMap)
+	info, err := oaSrv.Tokeninfo().IdToken(token).Do()
+	if err != nil {
+		logger.Printf("Error validating token: %v", err)
+		return false
+	}
+	logger.Printf("Token: %+v", info)
 
-	logger.Printf("Profile: %v", dataMap)
+	// TODO: Validate host portion of audience is equal to the current request host
+	// hosts := r.Header["Authorization"]
+	// if info.Audience != host {
+	// 	logger.Printf("Token for invalid client ID: %s", info.Audience)
+	// 	return false
+	// }
 
-	//TODO: Check the validity of aud
-	//      Must claim contains role or app ID?
+	if !info.VerifiedEmail {
+		logger.Printf("Token for unverified email: %s", info.Audience)
+		return false
+	}
 
 	return true
 

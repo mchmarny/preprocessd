@@ -1,0 +1,12 @@
+#!/bin/bash
+
+DIR="$(dirname "$0")"
+. "${DIR}/config"
+
+echo "User: ${SERVICE_NAME}-client"
+
+curl -XPOST \
+     -H "Content-Type: application/json" \
+     -H "Authorization: Bearer ..." \
+     -d @sample.json \
+	 http://localhost:8080/v1/api

@@ -6,8 +6,6 @@ cloud.google.com/go/internal/version
 cloud.google.com/go/pubsub/apiv1
 cloud.google.com/go/pubsub/internal/distribution
 cloud.google.com/go/compute/metadata
-# github.com/davecgh/go-spew v1.1.1
-github.com/davecgh/go-spew/spew
 # github.com/golang/protobuf v1.3.2
 github.com/golang/protobuf/proto
 github.com/golang/protobuf/ptypes
@@ -24,10 +22,6 @@ github.com/hashicorp/golang-lru/simplelru
 github.com/mchmarny/gcputil/env
 github.com/mchmarny/gcputil/project
 github.com/mchmarny/gcputil/meta
-# github.com/pmezard/go-difflib v1.0.0
-github.com/pmezard/go-difflib/difflib
-# github.com/stretchr/testify v1.3.0
-github.com/stretchr/testify/assert
 # go.opencensus.io v0.22.0
 go.opencensus.io/plugin/ocgrpc
 go.opencensus.io/stats
@@ -39,20 +33,20 @@ go.opencensus.io/trace/propagation
 go.opencensus.io/stats/internal
 go.opencensus.io/internal/tagencoding
 go.opencensus.io/metric/metricproducer
+go.opencensus.io/plugin/ochttp
 go.opencensus.io/resource
 go.opencensus.io/internal
 go.opencensus.io/trace/internal
 go.opencensus.io/trace/tracestate
-go.opencensus.io/plugin/ochttp
-go.opencensus.io
 go.opencensus.io/plugin/ochttp/propagation/b3
+go.opencensus.io
 # golang.org/x/net v0.0.0-20190724013045-ca1201d0de80
 golang.org/x/net/trace
 golang.org/x/net/internal/timeseries
 golang.org/x/net/http2
 golang.org/x/net/http2/hpack
-golang.org/x/net/context/ctxhttp
 golang.org/x/net/context
+golang.org/x/net/context/ctxhttp
 golang.org/x/net/http/httpguts
 golang.org/x/net/idna
 # golang.org/x/oauth2 v0.0.0-20190604053449-0f29369cfe45
@@ -72,28 +66,32 @@ golang.org/x/text/unicode/bidi
 golang.org/x/text/unicode/norm
 golang.org/x/text/transform
 # google.golang.org/api v0.7.0
+google.golang.org/api/oauth2/v2
 google.golang.org/api/option
 google.golang.org/api/support/bundler
+google.golang.org/api/gensupport
+google.golang.org/api/googleapi
+google.golang.org/api/transport/http
 google.golang.org/api/iterator
 google.golang.org/api/transport
 google.golang.org/api/internal
-google.golang.org/api/transport/grpc
-google.golang.org/api/transport/http
+google.golang.org/api/googleapi/internal/uritemplates
 google.golang.org/api/googleapi/transport
 google.golang.org/api/transport/http/internal/propagation
+google.golang.org/api/transport/grpc
 # google.golang.org/appengine v1.6.1
-google.golang.org/appengine
-google.golang.org/appengine/socket
 google.golang.org/appengine/urlfetch
+google.golang.org/appengine
 google.golang.org/appengine/internal
+google.golang.org/appengine/internal/urlfetch
+google.golang.org/appengine/socket
 google.golang.org/appengine/internal/app_identity
 google.golang.org/appengine/internal/modules
-google.golang.org/appengine/internal/socket
-google.golang.org/appengine/internal/urlfetch
 google.golang.org/appengine/internal/base
 google.golang.org/appengine/internal/datastore
 google.golang.org/appengine/internal/log
 google.golang.org/appengine/internal/remote_api
+google.golang.org/appengine/internal/socket
 # google.golang.org/genproto v0.0.0-20190801165951-fa694d86fc64
 google.golang.org/genproto/googleapis/pubsub/v1
 google.golang.org/genproto/protobuf/field_mask

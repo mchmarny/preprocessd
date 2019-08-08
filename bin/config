@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Global config
-SERVICE_NAME="preprocessor"
+SERVICE_NAME="processor"
 SERVICE_REGION="us-central1"
 IMAGE_VERSION="0.3.3"
 
