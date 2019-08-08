@@ -38,7 +38,7 @@ func pushHandler(w http.ResponseWriter, r *http.Request) {
 	logger.Printf("Processed data: %+v", d)
 
 	data, _ := json.Marshal(d)
-	err = que.push(r.Context(), data)
+	err = push(r.Context(), data)
 	if err != nil {
 		logger.Printf("Error posting data: %v", err)
 		writeResp(w, http.StatusBadRequest, "Internal Error")
@@ -51,9 +51,16 @@ func pushHandler(w http.ResponseWriter, r *http.Request) {
 
 func apiHandler(w http.ResponseWriter, r *http.Request) {
 
+	logger.Printf("API Handler invoked...")
+
 	w.Header().Set("Content-type", "application/json")
 
 	printRequest(r)
+
+	if !auth(r) {
+		writeResp(w, http.StatusForbidden, "Access Forbidden")
+		return
+	}
 
 	var m mockedEvent
 	if err := json.NewDecoder(r.Body).Decode(&m); err != nil {
@@ -72,7 +79,7 @@ func apiHandler(w http.ResponseWriter, r *http.Request) {
 	logger.Printf("Processed data: %+v", d)
 
 	data, _ := json.Marshal(d)
-	err = que.push(r.Context(), data)
+	err = push(r.Context(), data)
 	if err != nil {
 		logger.Printf("Error posting data: %v", err)
 		writeResp(w, http.StatusBadRequest, "Internal Error")

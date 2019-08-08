@@ -6,6 +6,8 @@ cloud.google.com/go/internal/version
 cloud.google.com/go/pubsub/apiv1
 cloud.google.com/go/pubsub/internal/distribution
 cloud.google.com/go/compute/metadata
+# github.com/davecgh/go-spew v1.1.1
+github.com/davecgh/go-spew/spew
 # github.com/golang/protobuf v1.3.2
 github.com/golang/protobuf/proto
 github.com/golang/protobuf/ptypes
@@ -22,6 +24,10 @@ github.com/hashicorp/golang-lru/simplelru
 github.com/mchmarny/gcputil/env
 github.com/mchmarny/gcputil/project
 github.com/mchmarny/gcputil/meta
+# github.com/pmezard/go-difflib v1.0.0
+github.com/pmezard/go-difflib/difflib
+# github.com/stretchr/testify v1.3.0
+github.com/stretchr/testify/assert
 # go.opencensus.io v0.22.0
 go.opencensus.io/plugin/ocgrpc
 go.opencensus.io/stats

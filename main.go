@@ -1,7 +1,6 @@
 package main
 
 import (
-	"context"
 	"fmt"
 	"log"
 	"net"
@@ -17,16 +16,9 @@ var (
 	prgID  = pj.GetIDOrFail()
 	topic  = ev.MustGetEnvVar("TOPIC", "preprocessd")
 	port   = ev.MustGetEnvVar("PORT", "8080")
-	que    *queue
 )
 
 func main() {
-
-	q, err := newQueue(context.Background())
-	if err != nil {
-		logger.Fatalf("Error creating pubsub client: %v", err)
-	}
-	que = q
 
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprintln(w, "ok")
