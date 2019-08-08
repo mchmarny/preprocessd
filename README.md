@@ -76,12 +76,6 @@ Once you have configured the GCP accounts, you can deploy a new Cloud Run servic
 bin/service
 ```
 
-By default, this service will publish the processed events into topic titled `processedevents`. If that topic doesn't exists, it will be created. If you like to publish to another topic or a topic that already exists, you can add an environment variable to the above command to specify the target topic.
-
-```shell
---update-env-vars="TOPIC=my-special-topic"
-```
-
 ## PubSub Subscription
 
 To enable PubSub to send topic data to Cloud Run service we will need to create a PubSub topic subscription and configure it to "push" events to the Cloud Service we deployed above.

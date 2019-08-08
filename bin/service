@@ -8,5 +8,8 @@ gcloud beta run deploy $SERVICE_NAME \
     --service-account "${SERVICE_NAME}-sa@${PROJECT}.iam.gserviceaccount.com" \
 	--no-allow-unauthenticated \
     --platform managed \
-	--region $SERVICE_REGION
+	--region $SERVICE_REGION \
+	--set-env-vars "TOPIC=${SERVICE_NAME}"
+
+
 

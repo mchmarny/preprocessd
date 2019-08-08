@@ -14,37 +14,28 @@ type queue struct {
 	topic  *pubsub.Topic
 }
 
-// newQueue is invoked once per Storable life cycle to configure the store
-func newQueue(ctx context.Context, projectID, topicName string) (q *queue, err error) {
-
-	if projectID == "" {
-		return nil, errors.New("projectID not set")
-	}
-
-	if topicName == "" {
-		return nil, errors.New("topicName not set")
-	}
+func newQueue(ctx context.Context) (q *queue, err error) {
 
 	if ctx == nil {
 		return nil, errors.New("context not set")
 	}
 
-	c, e := pubsub.NewClient(ctx, projectID)
+	c, e := pubsub.NewClient(ctx, prgID)
 	if e != nil {
 		return nil, e
 	}
 
-	t := c.Topic(topicName)
+	t := c.Topic(topic)
 	topicExists, err := t.Exists(ctx)
 	if err != nil {
 		return nil, err
 	}
 
 	if !topicExists {
-		logger.Printf("Topic %s not found, creating...", topicName)
-		t, err = c.CreateTopic(ctx, topicName)
+		logger.Printf("Topic %s not found, creating...", topic)
+		t, err = c.CreateTopic(ctx, topic)
 		if err != nil {
-			return nil, fmt.Errorf("Unable to create topic: %s - %v", topicName, err)
+			return nil, fmt.Errorf("Unable to create topic: %s - %v", topic, err)
 		}
 	}
 

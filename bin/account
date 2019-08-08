@@ -5,7 +5,8 @@ DIR="$(dirname "$0")"
 
 
 gcloud iam service-accounts create "${SERVICE_NAME}-sa" \
-    --display-name "Service Invoker Account for ${SERVICE_NAME}"
+    --display-name "Service Invoker Account for ${SERVICE_NAME}" \
+    --quiet
 
 gcloud projects add-iam-policy-binding $PROJECT \
     --member="serviceAccount:service-${PROJECT_NUM}@gcp-sa-pubsub.iam.gserviceaccount.com" \

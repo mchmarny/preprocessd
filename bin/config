@@ -1,9 +1,9 @@
 #!/bin/bash
 
 # Global config
-SERVICE_NAME="preprocessd"
+SERVICE_NAME="preprocessor"
 SERVICE_REGION="us-central1"
-IMAGE_VERSION="0.2.1"
+IMAGE_VERSION="0.3.2"
 
 
 # GCP metadata

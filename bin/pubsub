@@ -11,7 +11,7 @@ SERVICE_URL=$(gcloud beta run services describe $SERVICE_NAME \
 
 gcloud beta pubsub subscriptions create "${SERVICE_NAME}-sub" \
     --topic eventmaker \
-    --push-endpoint "${SERVICE_URL}/" \
+    --push-endpoint "${SERVICE_URL}/v1/push" \
     --push-auth-service-account "${SERVICE_NAME}-sa@${PROJECT}.iam.gserviceaccount.com"
 
 
