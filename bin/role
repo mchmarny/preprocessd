@@ -1,0 +1,11 @@
+#!/bin/bash
+
+DIR="$(dirname "$0")"
+. "${DIR}/config"
+
+
+gcloud iam roles create "${SERVICE_NAME}InvokerRole" \
+  --project $PROJECT \
+  --title "Service Invoker Role for ${SERVICE_NAME}" \
+  --description "invoke service with pubusb, logging/tracing dependancies" \
+  --permissions "pubsub.topics.create,pubsub.topics.get,pubsub.topics.list,pubsub.topics.publish,resourcemanager.projects.get,serviceusage.quotas.get,serviceusage.services.get,serviceusage.services.list,logging.logEntries.create,cloudtrace.traces.patch,monitoring.metricDescriptors.create,monitoring.metricDescriptors.get,monitoring.metricDescriptors.list,monitoring.monitoredResourceDescriptors.list,monitoring.timeSeries.create"
