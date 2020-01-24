@@ -7,7 +7,7 @@ DIR="$(dirname "$0")"
 SERVICE_URL=$(gcloud beta run services describe $SERVICE_NAME \
     --platform managed \
 	--region $SERVICE_REGION \
-    --format "value(status.domain)")
+    --format "value(status.url)")
 
 gcloud beta pubsub subscriptions create "${SERVICE_NAME}-sub" \
     --topic eventmaker \
